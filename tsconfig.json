@@ -19,7 +19,8 @@
       "@layout/*": ["./src/app/layout/*"],
       "@env/*": ["./src/environments/*"],
       "@utils/*": ["./src/app/shared/utils/*"],
-      "@pipes/*": ["./src/app/shared/pipes/*"]
+      "@pipes/*": ["./src/app/shared/pipes/*"],
+      "@core/*": ["./src/app/core/*"],
     }
   },
   "angularCompilerOptions": {
