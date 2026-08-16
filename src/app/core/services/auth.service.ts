@@ -1,0 +1,38 @@
+import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from '@env/environment';
+
+import {
+  LoginRequest,
+  LoginResponse
+} from '@core/models/auth.model';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+
+  private readonly http = inject(HttpClient);
+
+  private readonly apiUrl = environment.backend;
+
+  login(credentials: LoginRequest): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(
+      `${this.apiUrl}/login`,
+      credentials,
+      {
+        withCredentials: true
+      }
+    );
+  }
+
+  getTodos(): Observable<LoginResponse> {
+    return this.http.get<LoginResponse>(
+      `${this.apiUrl}/todos`,
+      {
+        withCredentials: true
+      }
+    );
+  }
+}

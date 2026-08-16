@@ -2,16 +2,16 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { HttpClientPort } from './core/http/ports/http-client.port';
-import { AngularHttpAdapter } from './core/http/adapters/angular-http-adapter';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    {
+    provideHttpClient()
+    /*{
       provide: HttpClientPort,
       useClass: AngularHttpAdapter
-    }
+    }*/
   ]
 };
