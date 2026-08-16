@@ -1,0 +1,91 @@
+<div class="login-container">
+  <div class="login-content">
+
+    <!-- Logo / nombre -->
+    <div class="login-brand">
+      <span class="fw-bold">{{appTitle}}</span>App
+    </div>
+
+    <!-- Tarjeta -->
+    <div class="card shadow-sm login-card">
+      <div class="card-body p-4">
+
+        <h5 class="text-center mb-4">
+          Completa tus datos para iniciar sesión
+        </h5>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <!-- Email -->
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Usuario" formControlName="username"
+              [ngClass]="{ 'is-invalid': isFieldInvalid('username') }" />
+
+            <span class="input-group-text">
+              <i class="bi bi-envelope"></i>
+            </span>
+            @if (isFieldInvalid('username')) {
+            <div class="invalid-feedback">
+              Debe ingresar el usuario.
+            </div>
+            }
+          </div>
+
+          <!-- Password -->
+          <div class="input-group mb-3">
+            <input type="password"
+                   class="form-control"
+                   placeholder="Password"
+                   formControlName="password"
+                   [ngClass]="{ 'is-invalid': isFieldInvalid('password') }"/>
+
+            <span class="input-group-text">
+              <i class="bi bi-lock-fill"></i>
+            </span>
+            @if (isFieldInvalid('password')) {
+            <div class="invalid-feedback">
+              Debe ingresar la contraseña.
+            </div>
+            }
+          </div>
+
+          <!-- Remember Me + Sign In -->
+          <div class="row align-items-center mb-3">
+            <div class="col-8">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rememberMe" />
+
+                <label class="form-check-label" for="rememberMe">
+                  Recordarme
+                </label>
+              </div>
+            </div>
+            <div class="text-center mb-3"></div>
+            <div class="d-grid gap-2 mb-3">
+            <button
+              type="submit"
+              class="btn btn-primary py-2 fw-semibold w-100 d-flex justify-content-center align-items-center gap-2 shadow-sm"
+              [disabled]="isLoading">
+              @if (isLoading) {
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span>Validando...</span>
+              } @else {
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span>Iniciar Sesión</span>
+              }
+            </button>
+            </div>
+          </div>
+        </form>
+        <div>
+          <p class="mb-1">
+            <a href="#">Olvidé mi contraseña</a>
+          </p>
+          <p class="mb-0">
+            <a href="#">Registrarse</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
