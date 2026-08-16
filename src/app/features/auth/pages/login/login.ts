@@ -36,10 +36,8 @@ export default class Login {
     this.isLoading = true;
     const { email, password } = this.loginForm.value;
 
-    // Simulación de petición de autenticación
     setTimeout(() => {
       this.isLoading = false;
-      // Aquí invocarás tu AuthService y redirigirás al Dashboard
     }, 1500);
   }
 
