@@ -1,27 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '@core/services/auth.service';
+import { SidebarToggle } from './sidebar-toggle/sidebar-toggle';
+import { Search } from "./search/search";
+import { EndLinks } from './end-links/end-links';
 
 @Component({
   selector: 'nav[app-navbar]',
-  imports: [],
+  imports: [SidebarToggle, Search, EndLinks],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
-export class Navbar {
-
-  private readonly auth = inject(AuthService);
-  private readonly router = inject(Router);
-
-  logout() {
-    this.auth.logout().subscribe({
-      next: response => {
-        console.log(response)
-        this.router.navigate(['/']);
-      },
-      error: console.error
-    });
-
-  }
-
-}
+export class Navbar {}
