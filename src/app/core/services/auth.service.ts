@@ -28,6 +28,16 @@ export class AuthService {
     );
   }
 
+  logout() {
+    return this.http.post(
+      `${this.apiUrl}/logout`,
+      "",
+      {
+        withCredentials: true
+      }
+    );
+  }
+
   getCurrentUser(): Observable<AuthenticatedUser> {
     return this.http.get<AuthenticatedUser>(
       `${this.apiUrl}/auth/me`,

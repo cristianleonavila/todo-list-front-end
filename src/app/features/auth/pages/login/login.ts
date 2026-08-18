@@ -5,6 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
 import { AuthService } from '@core/services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +17,11 @@ export default class Login {
 
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
-
-  appTitle = environment.appName;
-  isLoading = signal(false);
-
+  public appTitle = environment.appName;
+  public isLoading = signal(false);
   private readonly formBuilder = inject(FormBuilder);
+  private readonly toastr = inject(ToastrService);
+
 
   loginForm = this.formBuilder.group({
     username: ['ldiaz', [Validators.required]],
@@ -52,8 +53,9 @@ export default class Login {
         this.isLoading.set(false);
         this.router.navigate(['/main']);
       },
-      error: error => {
-        console.error('Error al iniciar sesión:', error);
+      error: ({error}) => {
+        const msg = error.error;
+        this.toastr.error(msg, 'Error');
         this.isLoading.set(false);
       }
     });

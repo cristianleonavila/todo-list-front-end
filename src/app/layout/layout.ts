@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Navbar } from "./navbar/navbar";
-import { MainContent } from "./main-content/main-content";
 import { Sidebar } from "./sidebar/sidebar";
+import { MainContent } from './main-content/main-content';
 
 @Component({
   selector: 'app-layout',
-  imports: [Navbar, MainContent, Sidebar],
+  imports: [Navbar, Sidebar, MainContent],
   templateUrl: './layout.html',
   styleUrl: './layout.scss'
 })

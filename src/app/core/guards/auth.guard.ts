@@ -12,7 +12,7 @@ export const authGuard: CanActivateFn = () => {
   return authService.getCurrentUser().pipe(
     map(() => true),
     catchError(() => {
-      return of(router.createUrlTree(['/login']));
+      return of(router.createUrlTree(['/']));
     })
   );
 };

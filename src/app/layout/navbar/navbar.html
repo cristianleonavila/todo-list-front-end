@@ -13,7 +13,7 @@
     <!--end::Start Navbar Links-->
 
     <!--begin::Navbar Search-->
-    <form class="navbar-search d-none d-md-block ms-3" role="search" action="./pages/search-results.html">
+    <!--<form class="navbar-search d-none d-md-block ms-3" role="search" action="./pages/search-results.html">
       <div class="input-group input-group-sm">
         <label for="navbar-search-input" class="visually-hidden">Search</label>
         <input type="search" id="navbar-search-input" name="q" class="form-control" placeholder="Search…" />
@@ -21,7 +21,7 @@
           <i class="bi bi-search" aria-hidden="true"></i>
         </button>
       </div>
-    </form>
+    </form>-->
     <!--end::Navbar Search-->
 
     <!--begin::End Navbar Links-->
@@ -91,8 +91,9 @@
           <!--end::User Image-->
           <!--begin::Menu Footer-->
           <li class="user-footer">
-            <a href="#" class="btn btn-outline-secondary">Profile</a>
-            <a href="#" class="btn btn-outline-danger float-end">Sign out</a>
+            <!--<a href="#" class="btn btn-outline-secondary">Profile</a>-->
+            <button type="button"
+                    class="btn btn-outline-danger float-end" (click)="logout()">Cerrar sesión</button>
           </li>
           <!--end::Menu Footer-->
         </ul>
