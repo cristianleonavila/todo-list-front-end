@@ -73,19 +73,6 @@
                 <span>Iniciar Sesión</span>
               }
             </button>
-            <button
-              type="button"
-              class="btn btn-primary py-2 fw-semibold w-100 d-flex justify-content-center align-items-center gap-2 shadow-sm"
-              [disabled]="isLoading()"
-              (click)="getTodos()">
-              @if (isLoading()) {
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                <span>Iniciando sesión...</span>
-              } @else {
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Get Todos</span>
-              }
-            </button>
             </div>
           </div>
         </form>

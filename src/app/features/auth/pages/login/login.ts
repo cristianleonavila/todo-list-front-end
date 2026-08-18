@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { environment } from '@env/environment';
 import { AuthService } from '@core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import { AuthService } from '@core/services/auth.service';
 export default class Login {
 
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
   appTitle = environment.appName;
   isLoading = signal(false);
@@ -47,26 +49,11 @@ export default class Login {
 
     this.authService.login(credentials).subscribe({
       next: response => {
-        console.log('Usuario autenticado:', response.user);
         this.isLoading.set(false);
+        this.router.navigate(['/main']);
       },
       error: error => {
         console.error('Error al iniciar sesión:', error);
-        this.isLoading.set(false);
-      }
-    });
-  }
-
-  getTodos(): void {
-    this.isLoading.set(true);
-
-    this.authService.getTodos().subscribe({
-      next: response => {
-        console.log(response);
-        this.isLoading.set(false);
-      },
-      error: error => {
-        console.error(error);
         this.isLoading.set(false);
       }
     });

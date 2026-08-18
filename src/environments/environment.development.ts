@@ -2,5 +2,5 @@ export const environment = {
   production: false,
   appName: "Todo List",
   autor: "Cristian Leon",
-  backend: "http://todolist.localhost/api"
+  backend: "https://backend-todolist.localhost/api"
 };

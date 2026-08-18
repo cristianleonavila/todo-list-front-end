@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 
 import {
+  AuthenticatedUser,
   LoginRequest,
   LoginResponse
 } from '@core/models/auth.model';
@@ -27,9 +28,9 @@ export class AuthService {
     );
   }
 
-  getTodos(): Observable<LoginResponse> {
-    return this.http.get<LoginResponse>(
-      `${this.apiUrl}/todos`,
+  getCurrentUser(): Observable<AuthenticatedUser> {
+    return this.http.get<AuthenticatedUser>(
+      `${this.apiUrl}/auth/me`,
       {
         withCredentials: true
       }
