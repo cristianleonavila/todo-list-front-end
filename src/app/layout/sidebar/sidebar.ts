@@ -10,7 +10,7 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 })
 export class Sidebar {
 
-  title = environment.appName;
+  appName = environment.appName;
 
   closeSideBar() {
     document.body.classList.remove('sidebar-open');
