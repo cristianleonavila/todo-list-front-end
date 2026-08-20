@@ -6,10 +6,12 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { InvalidClass } from '@shared/directives/invalid-class';
 import { FormError } from '@shared/components/form-error/form-error';
+import { ColorModeToggle } from "@layout/navbar/end-links/color-mode-toggle/color-mode-toggle";
+import { Footer } from "@layout/footer/footer";
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, InvalidClass, FormError],
+  imports: [ReactiveFormsModule, InvalidClass, FormError, ColorModeToggle, Footer],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })

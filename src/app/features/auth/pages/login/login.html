@@ -1,6 +1,12 @@
+<nav class="app-header navbar navbar-expand bg-body">
+  <div class="container-fluid">
+    <ul class="navbar-nav ms-auto">
+      <li app-color-mode-toggle></li>
+    </ul>
+  </div>
+</nav>
 <div class="login-container">
   <div class="login-content">
-
     <!-- Logo / nombre -->
     <div class="login-brand">
       <span class="fw-bold">{{appTitle}}</span>App
@@ -17,34 +23,24 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <!-- Email -->
           <div class="input-group mb-3">
-            <input type="text"
-                   class="form-control"
-                   placeholder="Usuario"
-                   formControlName="username"
-                   appInvalidClass/>
+            <input type="text" class="form-control" placeholder="Usuario" formControlName="username" appInvalidClass />
             <span class="input-group-text">
               <i class="bi bi-envelope"></i>
             </span>
-            <div app-form-error
-                [control]="loginForm.controls.username"
-                [messages]="errorsModel"
-                controlName="username"></div>
+            <div app-form-error [control]="loginForm.controls.username" [messages]="errorsModel" controlName="username">
+            </div>
           </div>
 
           <!-- Password -->
           <div class="input-group mb-3">
-            <input type="password"
-                   class="form-control"
-                   placeholder="Password"
-                   formControlName="password" appInvalidClass/>
+            <input type="password" class="form-control" placeholder="Password" formControlName="password"
+              appInvalidClass />
             <span class="input-group-text">
               <i class="bi bi-lock-fill"></i>
             </span>
 
-            <div app-form-error
-                 [control]="loginForm.controls.password"
-                 [messages]="errorsModel"
-                 controlName="password"></div>
+            <div app-form-error [control]="loginForm.controls.password" [messages]="errorsModel" controlName="password">
+            </div>
           </div>
 
           <!-- Remember Me + Sign In -->
@@ -60,18 +56,17 @@
             </div>
             <div class="text-center mb-3"></div>
             <div class="d-grid gap-2 mb-3">
-            <button
-              type="submit"
-              class="btn btn-primary py-2 fw-semibold w-100 d-flex justify-content-center align-items-center gap-2 shadow-sm"
-              [disabled]="isLoading()">
-              @if (isLoading()) {
+              <button type="submit"
+                class="btn btn-primary py-2 fw-semibold w-100 d-flex justify-content-center align-items-center gap-2 shadow-sm"
+                [disabled]="isLoading()">
+                @if (isLoading()) {
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 <span>Iniciando sesión...</span>
-              } @else {
+                } @else {
                 <i class="bi bi-box-arrow-in-right"></i>
                 <span>Iniciar Sesión</span>
-              }
-            </button>
+                }
+              </button>
             </div>
           </div>
         </form>
@@ -87,3 +82,5 @@
     </div>
   </div>
 </div>
+<footer class="app-footer" app-footer></footer>
+

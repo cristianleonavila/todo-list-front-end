@@ -2,10 +2,11 @@ import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Navbar } from "./navbar/navbar";
 import { Sidebar } from "./sidebar/sidebar";
 import { MainContent } from './main-content/main-content';
+import { Footer } from "./footer/footer";
 
 @Component({
   selector: 'app-layout',
-  imports: [Navbar, Sidebar, MainContent],
+  imports: [Navbar, Sidebar, MainContent, Footer],
   templateUrl: './layout.html'
 })
 export default class Layout implements OnInit, OnDestroy {
