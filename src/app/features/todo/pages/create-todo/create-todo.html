@@ -12,12 +12,8 @@
             <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
               <div class="mb-3">
                 <label class="form-label w-100">Título
-                  <input type="email" class="form-control" formControlName="title" [ngClass]="{'is-invalid': isFieldInvalid('title')}">
-                  @if (isFieldInvalid('title')) {
-                  <div class="invalid-feedback">
-                    Debe ingresar el título.
-                  </div>
-                  }
+                  <input type="text" class="form-control" formControlName="title" appInvalidClass>
+                  <div app-form-error [control]="todoForm.controls.title" controlName="title" [messages]="errorsModel"></div>
                 </label>
               </div>
               <div class="mb-3">
