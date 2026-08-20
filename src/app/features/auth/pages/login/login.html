@@ -17,17 +17,18 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <!-- Email -->
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Usuario" formControlName="username"
-              [ngClass]="{ 'is-invalid': isFieldInvalid('username') }" />
-
+            <input type="text"
+                   class="form-control"
+                   placeholder="Usuario"
+                   formControlName="username"
+                   appInvalidClass/>
             <span class="input-group-text">
               <i class="bi bi-envelope"></i>
             </span>
-            @if (isFieldInvalid('username')) {
-            <div class="invalid-feedback">
-              Debe ingresar el usuario.
-            </div>
-            }
+            <div app-form-error
+                [control]="loginForm.controls.username"
+                [messages]="errorsModel"
+                controlName="username"></div>
           </div>
 
           <!-- Password -->
@@ -35,17 +36,15 @@
             <input type="password"
                    class="form-control"
                    placeholder="Password"
-                   formControlName="password"
-                   [ngClass]="{'is-invalid': isFieldInvalid('password')}"/>
-
+                   formControlName="password" appInvalidClass/>
             <span class="input-group-text">
               <i class="bi bi-lock-fill"></i>
             </span>
-            @if (isFieldInvalid('password')) {
-            <div class="invalid-feedback">
-              Debe ingresar la contraseña.
-            </div>
-            }
+
+            <div app-form-error
+                 [control]="loginForm.controls.password"
+                 [messages]="errorsModel"
+                 controlName="password"></div>
           </div>
 
           <!-- Remember Me + Sign In -->

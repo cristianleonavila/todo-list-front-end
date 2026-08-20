@@ -6,10 +6,12 @@ import { environment } from '@env/environment';
 import { AuthService } from '@core/services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { InvalidClass } from '@shared/directives/invalid-class';
+import { FormError } from '@shared/components/form-error/form-error';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, InvalidClass, FormError, NgClass],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
@@ -21,6 +23,15 @@ export default class Login {
   public isLoading = signal(false);
   private readonly formBuilder = inject(FormBuilder);
   private readonly toastr = inject(ToastrService);
+
+  errorsModel = {
+    username: {
+      required: 'Debe especificar el usuario'
+    },
+    password: {
+      required: "Debe digitar la contraseña"
+    }
+  };
 
 
   loginForm = this.formBuilder.group({
