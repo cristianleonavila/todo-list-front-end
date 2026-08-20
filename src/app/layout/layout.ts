@@ -6,8 +6,7 @@ import { MainContent } from './main-content/main-content';
 @Component({
   selector: 'app-layout',
   imports: [Navbar, Sidebar, MainContent],
-  templateUrl: './layout.html',
-  styleUrl: './layout.scss'
+  templateUrl: './layout.html'
 })
 export default class Layout implements OnInit, OnDestroy {
 

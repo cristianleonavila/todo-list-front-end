@@ -5,8 +5,7 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 @Component({
   selector: 'aside[app-sidebar]',
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './sidebar.html',
-  styleUrl: './sidebar.scss',
+  templateUrl: './sidebar.html'
 })
 export class Sidebar {
 

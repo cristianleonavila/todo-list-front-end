@@ -8,8 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-create-todo',
   imports: [ReactiveFormsModule, InvalidClass, FormError],
-  templateUrl: './create-todo.html',
-  styleUrl: './create-todo.scss',
+  templateUrl: './create-todo.html'
 })
 export class CreateTodo {
 

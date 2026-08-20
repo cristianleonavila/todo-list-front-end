@@ -6,7 +6,6 @@ import { ErrorMessage } from './types/error-message';
   selector: 'div[app-form-error]',
   imports: [],
   templateUrl: './form-error.html',
-  styleUrl: './form-error.scss',
   host: {
     class: 'invalid-feedback'
   }

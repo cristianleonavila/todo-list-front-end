@@ -6,7 +6,6 @@ import { EndLinks } from './end-links/end-links';
 @Component({
   selector: 'nav[app-navbar]',
   imports: [SidebarToggle, Search, EndLinks],
-  templateUrl: './navbar.html',
-  styleUrl: './navbar.scss',
+  templateUrl: './navbar.html'
 })
 export class Navbar {}

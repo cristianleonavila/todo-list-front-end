@@ -5,8 +5,7 @@ import { AuthService } from '@core/services/auth.service';
 @Component({
   selector: 'li[app-user-dropdown]',
   imports: [],
-  templateUrl: './user-dropdown.html',
-  styleUrl: './user-dropdown.scss',
+  templateUrl: './user-dropdown.html'
 })
 export class UserDropdown {
 
