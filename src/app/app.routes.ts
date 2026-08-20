@@ -9,6 +9,10 @@ export const routes: Routes = [
     component: Login
   },
   {
+    path: 'test-form-validation',
+    loadComponent: () => import('@tests/test-form-validation/test-form-validation')
+  },
+  {
     path: 'main',
     canActivate: [authGuard],
     loadComponent: () => import('@layout/layout'),

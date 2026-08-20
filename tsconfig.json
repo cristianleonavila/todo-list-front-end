@@ -21,6 +21,8 @@
       "@utils/*": ["./src/app/shared/utils/*"],
       "@pipes/*": ["./src/app/shared/pipes/*"],
       "@core/*": ["./src/app/core/*"],
+      "@tests/*": ["./src/app/tests/*"],
+      "@shared/*": ["./src/app/shared/*"],
     }
   },
   "angularCompilerOptions": {
