@@ -26,20 +26,16 @@ export class FormError {
   }
 
   get message(): string | null {
-    const control = this.control();
-
+    const control = this.control(),
+          name = this.controlName();
     if (!control.invalid || !control.errors) {
       return null;
     }
-
-    const fieldMessages = this.messages()[this.controlName()];
-
+    const fieldMessages = this.messages()[name];
     if (!fieldMessages) {
       return null;
     }
-
     const error = Object.keys(control.errors)[0];
-
     return fieldMessages[error] ?? null;
   }
 }
