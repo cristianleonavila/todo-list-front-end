@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';import { FormError } from '@shared/components/form-error/form-error';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';import { TodoService } from '@features/todo/services/todo-service';
+import { FormError } from '@shared/components/form-error/form-error';
 import { InvalidClass } from '@shared/directives/invalid-class';
 ;
 import { ToastrService } from 'ngx-toastr';
@@ -15,6 +16,8 @@ export class CreateTodo {
   public isLoading = signal(false);
   private readonly formBuilder = inject(FormBuilder);
   private readonly toastr = inject(ToastrService);
+  private todoService = inject(TodoService);
+
   errorsModel = {
     title: {
       required: "Debe digitar el título de la tarea",
@@ -33,6 +36,20 @@ export class CreateTodo {
   onSubmit() {
     if ( this.todoForm.invalid ) {
       this.todoForm.markAllAsTouched();
+      return;
     }
+    this.isLoading.set(true);
+    const request = this.todoForm.getRawValue();
+    const response = this.todoService.createTodo(request).subscribe({
+      next: (response) => {
+        this.isLoading.set(false);
+        this.toastr.success(response.message, 'Hecho');
+        this.todoForm.reset();
+      },
+      error: ({statusText}) => {
+        this.isLoading.set(false);
+        this.toastr.error(statusText, 'Error');
+      }
+    });
   }
 }
