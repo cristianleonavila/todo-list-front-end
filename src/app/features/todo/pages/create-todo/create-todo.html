@@ -18,7 +18,8 @@
               </div>
               <div class="mb-3">
                 <label class="form-label w-100">Descripción
-                  <textarea formControlName="description" class="form-control"></textarea>
+                  <textarea formControlName="description" class="form-control" appInvalidClass></textarea>
+                  <div app-form-error [control]="todoForm.controls.description" controlName="description" [messages]="errorsModel"></div>
                 </label>
               </div>
               <div class="d-flex justify-content-end gap-2">
