@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal, AfterViewInit } from '@angular/core';
+import { ColorModeToggle } from '@layout/navbar/end-links/color-mode-toggle/color-mode-toggle';
+import { AgGridThemeService } from '@shared/services/ag-grid-theme-service';
+import { initialize } from 'admin-lte';
 import { AgGridAngular } from 'ag-grid-angular';
-import { ColDef, TextFilterModule, ModuleRegistry, colorSchemeDarkBlue, themeQuartz } from 'ag-grid-community';
+import { ColDef, TextFilterModule, ModuleRegistry, colorSchemeDarkBlue } from 'ag-grid-community';
 
 ModuleRegistry.registerModules([TextFilterModule]);
 
 @Component({
   selector: 'app-ag-grid-example',
-  imports: [AgGridAngular],
+  imports: [AgGridAngular, ColorModeToggle],
   templateUrl: './ag-grid-example.html',
   styles: `
     ag-grid-angular {
@@ -15,9 +18,12 @@ ModuleRegistry.registerModules([TextFilterModule]);
   }
   `,
 })
-export default class AgGridExample {
+export default class AgGridExample implements AfterViewInit {
 
-  theme = themeQuartz.withPart(colorSchemeDarkBlue);
+  themeService = inject(AgGridThemeService);
+
+  theme = this.themeService.theme;
+
   rowData = [
     {
       id: 1,
@@ -58,4 +64,8 @@ export default class AgGridExample {
       headerName: 'Edad'
     }
   ];
+
+  ngAfterViewInit(): void {
+    initialize();
+  }
 }

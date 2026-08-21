@@ -1,6 +1,13 @@
+<nav class="app-header navbar navbar-expand bg-body">
+  <div class="container-fluid">
+    <ul class="navbar-nav ms-auto">
+      <li app-color-mode-toggle></li>
+    </ul>
+  </div>
+</nav>
 <div class="container mt-4">
   <ag-grid-angular
-    [theme]="theme"
+    [theme]="theme()"
     [rowData]="rowData"
     [columnDefs]="columnDefs">
   </ag-grid-angular>
