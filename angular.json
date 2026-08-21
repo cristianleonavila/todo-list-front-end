@@ -34,6 +34,7 @@
               "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
               "node_modules/overlayscrollbars/styles/overlayscrollbars.min.css",
               "node_modules/ngx-toastr/toastr.css",
+              "node_modules/datatables.net-dt/css/dataTables.dataTables.css",
               "src/styles.scss"
             ],
             "scripts": [

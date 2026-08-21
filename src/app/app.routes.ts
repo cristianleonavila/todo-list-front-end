@@ -13,6 +13,13 @@ export const routes: Routes = [
     loadComponent: () => import('@tests/test-form-validation/test-form-validation')
   },
   {
+    path: 'test-datatables',
+    loadComponent: () => import('@tests/data-tables-example/data-tables-example')
+  },{
+    path: 'test-ag-angular',
+    loadComponent: () => import('@tests/ag-grid-example/ag-grid-example')
+  },
+  {
     path: 'main',
     canActivate: [authGuard],
     loadComponent: () => import('@layout/layout'),
