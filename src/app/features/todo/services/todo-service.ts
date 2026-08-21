@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { CreateTodoRequest } from '../models/create-todo-request';
+import { TodoRequest } from '../models/todo-request';
 import { Observable } from 'rxjs';
-import { CreateTodoResponse } from '../models/create-todo-response';
 import { environment } from '@env/environment';
+import { TodoResponse } from '../models/todo-response';
 
 @Injectable({
   providedIn: 'root',
@@ -12,12 +12,30 @@ export class TodoService {
 
   private http = inject(HttpClient);
 
-  createTodo(request: CreateTodoRequest): Observable<CreateTodoResponse> {
-    return this.http.post<CreateTodoResponse>(
+  createTodo(request: TodoRequest): Observable<TodoResponse> {
+    return this.http.post<TodoResponse>(
       `${environment.backend}/todos`,
       request,
       {
         withCredentials: true
       });
+  }
+
+  updateTodo(todoId: string, request: TodoRequest) {
+    return this.http.patch<TodoResponse>(
+      `${environment.backend}/todos/${todoId}`,
+      request,
+      {
+        withCredentials: true
+      });
+  }
+
+  getById(id: string) {
+    return this.http.get<TodoResponse>(
+      `${environment.backend}/todos/${id}`,
+      {
+        withCredentials: true
+      }
+    );
   }
 }
