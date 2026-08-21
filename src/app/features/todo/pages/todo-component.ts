@@ -107,4 +107,8 @@ export class TodoComponent implements OnInit {
         }
       });
   }
+
+  newTodo() {
+    this.router.navigate(['/main/todo']);
+  }
 }
