@@ -34,6 +34,8 @@ export class TodoComponent implements OnInit {
     )
   );
 
+  public readonly id = signal<string>("");
+
   public readonly todoForm = this.formBuilder.group({
     id: [''],
     title: ['', [Validators.required, Validators.minLength(4)]],
@@ -63,10 +65,12 @@ export class TodoComponent implements OnInit {
 
     this.todoService.getById(id).subscribe({
       next: ({ todo = {} }) => {
+        this.id.set(todo.id!);
         this.todoForm.reset(todo);
       },
-      error: ({ statusText }) => {
-        this.toastr.error(statusText, 'Error');
+      error: ({statusText, error: err}) => {
+        this.id.set("");
+        this.toastr.error(err.error, 'Error');
       }
     });
   }
@@ -109,6 +113,7 @@ export class TodoComponent implements OnInit {
   }
 
   newTodo() {
+    this.todoForm.reset();
     this.router.navigate(['/main/todo']);
   }
 }
