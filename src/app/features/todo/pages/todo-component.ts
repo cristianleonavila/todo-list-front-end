@@ -21,21 +21,17 @@ import { ErrorMessage } from '@shared/components/form-error/types/error-message'
 export class TodoComponent implements OnInit {
 
   public readonly isLoading = signal(false);
-
   private readonly formBuilder = inject(FormBuilder);
   private readonly toastr = inject(ToastrService);
   private readonly todoService = inject(TodoService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly router = inject(Router);
-
-  public readonly todoId = toSignal(
+  public readonly todoId = signal<string>("");
+  public readonly todoIdParam = toSignal(
     this.activatedRoute.params.pipe(
       map(params => params['id'])
     )
   );
-
-  public readonly id = signal<string>("");
-
   public readonly todoForm = this.formBuilder.group({
     id: [''],
     title: ['', [Validators.required, Validators.minLength(4)]],
@@ -57,7 +53,7 @@ export class TodoComponent implements OnInit {
   }
 
   private loadTodo(): void {
-    const id = this.todoId();
+    const id = this.todoIdParam();
 
     if (!id) {
       return;
@@ -65,11 +61,11 @@ export class TodoComponent implements OnInit {
 
     this.todoService.getById(id).subscribe({
       next: ({ todo = {} }) => {
-        this.id.set(todo.id!);
+        this.todoId.set(todo.id!);
         this.todoForm.reset(todo);
       },
       error: ({statusText, error: err}) => {
-        this.id.set("");
+        this.todoId.set("");
         this.toastr.error(err.error, 'Error');
       }
     });
