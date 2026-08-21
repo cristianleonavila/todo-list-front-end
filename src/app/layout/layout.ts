@@ -31,9 +31,4 @@ export default class Layout implements OnInit, OnDestroy, AfterViewInit {
     this.renderer.removeClass(document.body, 'sidebar-open');
     this.renderer.removeClass(document.body, 'sidebar-collapse');
   }
-
-  closeSidebar(): void {
-    document.body.classList.remove('sidebar-open');
-    document.body.classList.add('sidebar-collapse');
-  }
 }
