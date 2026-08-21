@@ -1,17 +1,22 @@
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Navbar } from "./navbar/navbar";
 import { Sidebar } from "./sidebar/sidebar";
 import { MainContent } from './main-content/main-content';
 import { Footer } from "./footer/footer";
+import { initialize } from 'admin-lte';
 
 @Component({
   selector: 'app-layout',
   imports: [Navbar, Sidebar, MainContent, Footer],
   templateUrl: './layout.html'
 })
-export default class Layout implements OnInit, OnDestroy {
+export default class Layout implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private renderer: Renderer2) {}
+
+  ngAfterViewInit(): void {
+    initialize();
+  }
 
   ngOnInit(): void {
     this.renderer.addClass(document.body, 'layout-fixed');

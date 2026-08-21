@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
 import { AuthService } from '@core/services/auth.service';
@@ -8,6 +8,7 @@ import { InvalidClass } from '@shared/directives/invalid-class';
 import { FormError } from '@shared/components/form-error/form-error';
 import { ColorModeToggle } from "@layout/navbar/end-links/color-mode-toggle/color-mode-toggle";
 import { Footer } from "@layout/footer/footer";
+import { initialize } from 'admin-lte';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,10 @@ import { Footer } from "@layout/footer/footer";
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
-export default class Login {
+export default class Login implements AfterViewInit {
+  ngAfterViewInit(): void {
+    initialize();
+  }
 
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
