@@ -8,18 +8,31 @@ import { ToastrService } from 'ngx-toastr';
 import { finalize, map } from 'rxjs';
 import { TodoService } from '@features/todo/services/todo-service';
 import { ErrorMessage } from '@shared/components/form-error/types/error-message';
-
+import { Todo } from '../models/todo-response';
+import { AgGridAngular } from 'ag-grid-angular';
+import { ColDef, ValidationModule, ModuleRegistry, TextFilterModule, AutoSizeStrategy, ColumnAutoSizeModule} from 'ag-grid-community';
+import { AgGridThemeService } from '@shared/services/ag-grid-theme-service';
+ModuleRegistry.registerModules([ValidationModule, TextFilterModule, ColumnAutoSizeModule]);
 @Component({
   selector: 'app-create-todo',
   imports: [
     ReactiveFormsModule,
     InvalidClass,
-    FormError
+    FormError,
+    AgGridAngular
   ],
-  templateUrl: './todo-component.html'
+  templateUrl: './todo-component.html',
+  styles: `
+    ag-grid-angular {
+    display: block;
+    height: 400px;
+  }
+  `
 })
 export class TodoComponent implements OnInit {
 
+  public todos = signal<Todo[]>([]);
+  public agThemeService = inject(AgGridThemeService);
   public readonly isLoading = signal(false);
   private readonly formBuilder = inject(FormBuilder);
   private readonly toastr = inject(ToastrService);
@@ -38,6 +51,35 @@ export class TodoComponent implements OnInit {
     description: ['', Validators.required]
   });
 
+  colDefs: ColDef[] = [
+    {
+      field: 'id',
+      headerName: 'ID',
+      width: 50
+    },
+    {
+      field: 'title',
+      headerName: 'Title',
+      filter: true
+    },
+    {
+      field: 'description',
+      headerName: 'Description'
+    }
+  ];
+
+  autoSize: AutoSizeStrategy = {
+    type: "fitGridWidth",
+    defaultMinWidth: 100,
+    columnLimits: [
+      {
+        colId: "id",
+        minWidth: 20
+      }
+
+    ]
+  };
+
   errorsModel: ErrorMessage = {
     title: {
       required: 'Debe digitar el título de la tarea',
@@ -50,6 +92,9 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTodo();
+    this.todoService.getTodos().subscribe({
+      next: todos => this.todos.set(todos)
+    })
   }
 
   private loadTodo(): void {

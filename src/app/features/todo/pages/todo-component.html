@@ -52,5 +52,13 @@
         </div>
       </div>
     </div>
+    <div class="container mt-4">
+      <ag-grid-angular
+        [theme]="agThemeService.theme()"
+        [rowData]="todos()"
+        [columnDefs]="colDefs"
+        [autoSizeStrategy]="autoSize">
+      </ag-grid-angular>
+    </div>
   </div>
 </div>

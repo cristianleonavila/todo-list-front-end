@@ -7,7 +7,7 @@
 </nav>
 <div class="container mt-4">
   <ag-grid-angular
-    [theme]="theme()"
+    [theme]="agThemeService.theme()"
     [rowData]="rowData"
     [columnDefs]="columnDefs">
   </ag-grid-angular>

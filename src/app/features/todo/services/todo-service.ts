@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { TodoRequest } from '../models/todo-request';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
-import { TodoResponse } from '../models/todo-response';
+import { Todo, TodoResponse } from '../models/todo-response';
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +33,15 @@ export class TodoService {
   getById(id: string) {
     return this.http.get<TodoResponse>(
       `${environment.backend}/todos/${id}`,
+      {
+        withCredentials: true
+      }
+    );
+  }
+
+  getTodos() {
+    return this.http.get<Todo[]>(
+      `${environment.backend}/todos`,
       {
         withCredentials: true
       }

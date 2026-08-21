@@ -3,7 +3,7 @@ import { ColorModeToggle } from '@layout/navbar/end-links/color-mode-toggle/colo
 import { AgGridThemeService } from '@shared/services/ag-grid-theme-service';
 import { initialize } from 'admin-lte';
 import { AgGridAngular } from 'ag-grid-angular';
-import { ColDef, TextFilterModule, ModuleRegistry, colorSchemeDarkBlue } from 'ag-grid-community';
+import { ColDef, TextFilterModule, ModuleRegistry } from 'ag-grid-community';
 
 ModuleRegistry.registerModules([TextFilterModule]);
 
@@ -20,9 +20,7 @@ ModuleRegistry.registerModules([TextFilterModule]);
 })
 export default class AgGridExample implements AfterViewInit {
 
-  themeService = inject(AgGridThemeService);
-
-  theme = this.themeService.theme;
+  agThemeService = inject(AgGridThemeService);
 
   rowData = [
     {
